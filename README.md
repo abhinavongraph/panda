@@ -2,36 +2,18 @@
 
 Panda gem provides an interface to access the [Panda](http://pandastream.com) API from Ruby.
 
-* [Visit panda\_gem on Github](http://github.com/pandastream/panda_gem)
-* [![Build
-  Status](https://secure.travis-ci.org/pandastream/panda_gem.png?branch=master)](http://travis-ci.org/pandastream/panda_gem)
-
 ## Installation
 
     gem install panda
 
-## How to use it
+## Configuration
+  First you must log in to your account where you can find your credentials as follows:
 
-    require 'rubygems'
-    require 'panda'
+  Under Api Access: [Access key](https://app.pandastream.com/credentials), Secret key, API URL
+  After selecting your [Cloud](https://app.pandastream.com/clouds): Cloud ID
+  # PRO TIP: you may want to create two different clouds, one for development and one for production. Note that each cloud  will have a different Cloud ID, but the other credentials will be shared across all clouds.
 
-## Faraday Adapter
-    The gem automatically detects http libraries and sets the default adapter
-    You can just set the default Panda adapter if you are not happy with the current one.
-
-    Panda.default_adapter = :excon
-
-### Creating an instance of the client
-
-    Panda.configure do
-      access_key "panda_access_key"
-      secret_key "panda_secret_key"
-      cloud_id "panda_cloud_id"
-      # Uncomment below if you have register for an EU account
-      # api_host "api-eu.pandastream.com" 
-    end
-
-    or Panda.configure({:access_key => ....})
+Once equipped with this information, you can create a Panda config file on config/panda.yml. Just copy the following example and fill it out with your own credentials where appropriate:
 
 ### Inside a Rails app with a main account or using Heroku Addon
 
