@@ -36,16 +36,21 @@ Next create the file `initializers/panda.rb` and then add the line below to conn
 If you don't use a config file and want to simply be setup, do the following (works only on heroku):
 
     Panda.configure_heroku
+    
 ### Playing with the library
 
     Playing with the library
     Panda::Profile.all
           => [<Panda::Profile preset_name: h264, ...>]
+          
     Now, upload a sample video. You can use any URL; this is the URL of a sample we've made available:
     >> video = Panda::Video.create!(:source_url => "http://panda-test-harness-videos.s3.amazonaws.com/panda.mp4")
+    
     Or use a local file:
     >> video = Panda::Video.create!(:file => File.new("/home/me/panda.mp4"))
+    
     Now wait until the video has finished encoding (which could be several minutes). You can check by doing:
+    
     >> video.reload.status
           => "success"
     
