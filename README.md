@@ -5,31 +5,47 @@ Panda gem provides an interface to access the [Panda](http://pandastream.com) AP
 ## Installation
 
     gem install panda
+    or include in gemfile gem 'panda', '~> 1.6.0'
 
 ## Configuration
   First you must log in to your account where you can find your credentials as follows:
 
-  Under Api Access: [Access key](https://app.pandastream.com/credentials), Secret key, API URL
-  After selecting your [Cloud](https://app.pandastream.com/clouds): Cloud ID
-  # PRO TIP: you may want to create two different clouds, one for development and one for production. Note that each cloud  will have a different Cloud ID, but the other credentials will be shared across all clouds.
-
-Once equipped with this information, you can create a Panda config file on config/panda.yml. Just copy the following example and fill it out with your own credentials where appropriate:
+  Under Api Access: [Access key](https://app.pandastream.com/credentials), Secret key, API URL.
+  After selecting your [Cloud](https://app.pandastream.com/clouds): Cloud ID.
 
 ### Inside a Rails app with a main account or using Heroku Addon
 
 Heroku will store your credentials as an environment variable called PANDASTREAM_URL. You can find more information on [Heroku config variable docs](http://docs.heroku.com/config-vars)
 
-If you use a config file like `config/panda.yml` to support multiple environments, do the following in your `config/initializers/panda.rb` :
+Next create the file `initializers/panda.rb` and then add the line below to connect to Panda when your app starts
 
     Panda.configure((ENV['PANDASTREAM_URL'] || YAML::load_file(File.join(File.dirname(__FILE__),"..", "panda.yml"))[Rails.env]))
+    or Panda.configure(YAML.load_file(Rails.root.join("config/panda.yml"))[Rails.env])
 
-See the [Rails How-to](http://www.pandastream.com/docs/integrate_with_rails) for more details.
+## config/panda.yml
+  development:
+            `access_key`: Your Panda access key
+            `secret_key`: Your Panda secret key
+            `cloud_id`: Your Panda cloud id
+            # Uncomment the line below if your panda account is in the EU
+            # api_host: api-eu.pandastream.com
 
 ### Creating an instance using ONLY with Heroku Addon
 
 If you don't use a config file and want to simply be setup, do the following (works only on heroku):
 
     Panda.configure_heroku
+
+## Playing with the library
+  >> Panda::Profile.all
+          => [<Panda::Profile preset_name: h264, ...>]
+  Now, upload a sample video. You can use any URL; this is the URL of a sample we've made available:
+  >> video = Panda::Video.create!(:source_url => "http://panda-test-harness-videos.s3.amazonaws.com/panda.mp4")
+  `Or use a local file:`
+  >> video = Panda::Video.create!(:file => File.new("/home/me/panda.mp4"))
+  Now wait until the video has finished encoding (which could be several minutes). You can check by doing:
+  >> video.reload.status
+          => "success"
 
 ### Typical usage
 
