@@ -22,7 +22,9 @@ Next create the file `initializers/panda.rb` and then add the line below to conn
     Panda.configure((ENV['PANDASTREAM_URL'] || YAML::load_file(File.join(File.dirname(__FILE__),"..", "panda.yml"))[Rails.env]))
     or Panda.configure(YAML.load_file(Rails.root.join("config/panda.yml"))[Rails.env])
 
-## config/panda.yml
+### config/panda.yml
+  
+    Playing with the library
   development:
     `access_key`: Your Panda access key
     `secret_key`: Your Panda secret key
@@ -35,6 +37,8 @@ Next create the file `initializers/panda.rb` and then add the line below to conn
 If you don't use a config file and want to simply be setup, do the following (works only on heroku):
 
     Panda.configure_heroku
+### Playing with the library
+
     Playing with the library
     Panda::Profile.all
           => [<Panda::Profile preset_name: h264, ...>]
@@ -45,6 +49,7 @@ If you don't use a config file and want to simply be setup, do the following (wo
     Now wait until the video has finished encoding (which could be several minutes). You can check by doing:
     >> video.reload.status
           => "success"
+    
 
 ### Typical usage
 
