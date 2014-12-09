@@ -24,13 +24,12 @@ Next create the file `initializers/panda.rb` and then add the line below to conn
 
 ### config/panda.yml
   
-    Playing with the library
-  development:
-    `access_key`: Your Panda access key
-    `secret_key`: Your Panda secret key
-    `cloud_id`: Your Panda cloud id
-    # Uncomment the line below if your panda account is in the EU
-    # api_host: api-eu.pandastream.com
+    development:
+        `access_key`: Your Panda access key
+        `secret_key`: Your Panda secret key
+        `cloud_id`: Your Panda cloud id
+        # Uncomment the line below if your panda account is in the EU
+        # api_host: api-eu.pandastream.com
 
 ### Creating an instance using ONLY with Heroku Addon
 
