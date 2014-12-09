@@ -37,7 +37,7 @@ If you don't use a config file and want to simply be setup, do the following (wo
     Panda.configure_heroku
 
 ## Playing with the library
-  >> Panda::Profile.all
+  > Panda::Profile.all
           => [<Panda::Profile preset_name: h264, ...>]
   Now, upload a sample video. You can use any URL; this is the URL of a sample we've made available:
   >> video = Panda::Video.create!(:source_url => "http://panda-test-harness-videos.s3.amazonaws.com/panda.mp4")
