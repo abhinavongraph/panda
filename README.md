@@ -24,27 +24,26 @@ Next create the file `initializers/panda.rb` and then add the line below to conn
 
 ## config/panda.yml
   development:
-            `access_key`: Your Panda access key
-            `secret_key`: Your Panda secret key
-            `cloud_id`: Your Panda cloud id
-            # Uncomment the line below if your panda account is in the EU
-            # api_host: api-eu.pandastream.com
+    `access_key`: Your Panda access key
+    `secret_key`: Your Panda secret key
+    `cloud_id`: Your Panda cloud id
+    # Uncomment the line below if your panda account is in the EU
+    # api_host: api-eu.pandastream.com
 
 ### Creating an instance using ONLY with Heroku Addon
 
 If you don't use a config file and want to simply be setup, do the following (works only on heroku):
 
     Panda.configure_heroku
-
-## Playing with the library
-  > Panda::Profile.all
+    Playing with the library
+    Panda::Profile.all
           => [<Panda::Profile preset_name: h264, ...>]
-  Now, upload a sample video. You can use any URL; this is the URL of a sample we've made available:
-  >> video = Panda::Video.create!(:source_url => "http://panda-test-harness-videos.s3.amazonaws.com/panda.mp4")
-  `Or use a local file:`
-  >> video = Panda::Video.create!(:file => File.new("/home/me/panda.mp4"))
-  Now wait until the video has finished encoding (which could be several minutes). You can check by doing:
-  >> video.reload.status
+    Now, upload a sample video. You can use any URL; this is the URL of a sample we've made available:
+    >> video = Panda::Video.create!(:source_url => "http://panda-test-harness-videos.s3.amazonaws.com/panda.mp4")
+    Or use a local file:
+    >> video = Panda::Video.create!(:file => File.new("/home/me/panda.mp4"))
+    Now wait until the video has finished encoding (which could be several minutes). You can check by doing:
+    >> video.reload.status
           => "success"
 
 ### Typical usage
